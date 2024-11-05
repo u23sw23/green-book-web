@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Form</title>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form action="/login" method="post"> <!--action="/login" 属性指定了当表单提交时，数据将被发送到哪个 URL,这里数据将被发送到服务器上的 /login 路径-->
+        <!--method="post" 属性指定了数据将通过 HTTP POST 方法发送。这意味着用户输入的数据将包含在请求体中，而不是作为 URL 参数。-->
+        <label for="username">用户名:</label>
+        <input type="text" id="username" name="username" required><br><br><!--标签（label）元素，它为表单中的用户名输入字段提供了描述性的文本-->
+        <label for="password">密码:</label>  <!--br是HTML 换行元素，用于添加垂直空间-->
+        <input type="password" id="password" name="password" required><br><br> <!--required 属性表示在提交表单之前，用户必须填写这个字段-->
+        <input type="submit" value="登录">  <!--上面的 name部分是关键，为输入字段指定的名称表单数据被提交到服务器时用于标识该字段的数据。-->
+        <!--<input type="submit" value="登录">在表单中创建一个按钮，当用户点击这个按钮时，表单会被提交。表单提交后，表单中的数据会被发送到服务器。-->
+        <!--需要注意的是，表单提交的目标地址是通过<form>元素的action属性来指定的-->
+    </form>
+</body>
+</html>

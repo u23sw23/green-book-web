@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录注册界面</title>
+    <style>
+        body {  /*这里存储着几乎所有界面的css样视 我的平板电脑上横1260px 纵660px*/
+            min-height: 100vh; /* 这里面放所有界面都通用的东西*  vh相对视口高度 vw相对视口宽度 %相对父元素的尺寸*/
+            font-family: "华文中宋";
+}
+.body-type1{
+    background-image: url("../static/public/登录界面图片.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* 确保至少覆盖整个视口高度 */
+    text-align: center; /*水平居中*/
+    align-content: center; /*垂直居中*/
+}
+    </style>
+</head>
+<body class="body-type1">
+    <h1>Login GreenBook</h1>
+    <form action="/static" method="post">
+        <div>
+            <label for="username">username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">password:</label>
+            <input type="text" id="password" name="password" required>
+        </div>
+        <input type="submit" value="Login">
+    </form>
+    <div><a href="/register">Chick here to register</a></div>
+
+{% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+
+</body>
+</html>
