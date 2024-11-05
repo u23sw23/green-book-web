@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +19,7 @@
         </nav>
     </header>
     <h1>Stay Mierica</h1> <br> <br>
-    <img src="{{introduction.image_url}}" alt="{{ introduction.name }}" width="500px" border="5px">
+    <img src="{{introduction.image_url}}" alt="{{ introduction.name }}">
     <br> <br>
     <h2>Introduction</h2>
     <br>
@@ -41,7 +40,9 @@
     <form method="post" class="comment">
         <label for="username">username:</label>
         <input type="text" id="username" name="username" required><br><br>
-
+        
+        <input type="hidden" id="rating" name="rating" value="0">
+        
         <label for="content">leave your comment here:</label>
         <textarea id="content" name="content" placeholder="please give your comment here..." required></textarea><br><br>
 
@@ -54,6 +55,18 @@
         <div>
             <strong>{{ post.username }}</strong>:
             {{ post.content }}
+            <br>
+            <span class="comment-rating">
+                {% for i in range(post.rating|int) %}
+                    <span class="iconfont icon-pingfenxingxing filled"></span>
+                {% endfor %}
+                {% if post.rating % 1 == 0.5 %}
+                    <span class="iconfont icon-pingfenxingxing half-filled"></span>
+                {% endif %}
+                {% for i in range(5 - post.rating|int - (1 if post.rating % 1 == 0.5 else 0)) %}
+                    <span class="iconfont icon-pingfenxingxing"></span>
+                {% endfor %}
+            </span>
             <em>({{ post.timestamp }})</em>
         </div>
     {% else %}
